@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context>
+
+    <Resource 
+        name="jdbc/OracleCloudATP" 
+        auth="Container"
+        type="javax.sql.DataSource"
+        username="HR"
+        password="Oracle123456789"
+        driverClassName="oracle.jdbc.OracleDriver"
+        url="jdbc:oracle:thin:@atp20191201_high?TNS_ADMIN=C:/opt/OracleCloudWallet/ATP"
+        maxTotal="8"
+        maxIdle="2"
+    />
+
+    <Resource 
+        name="jdbc/OracleCloudATPWithDriverSpy" 
+        auth="Container"
+        type="javax.sql.DataSource"
+        username="SCOTT"
+        password="Oracle12345678"
+        driverClassName="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"
+        url="jdbc:log4jdbc:oracle:thin:@atp20191201_high?TNS_ADMIN=C:/opt/OracleCloudWallet/ATP"
+        maxTotal="8"
+        maxIdle="2"
+    />
+
+</Context>

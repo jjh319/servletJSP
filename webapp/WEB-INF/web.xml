@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+  <display-name>study_servletjsp</display-name>
+
+  <!-- 현재의 웹어플리케이션에 포함된 모든 컴포넌트(=구성요소)들이 사용가능한
+  공유되는 초기화파라미터로, Context Parameter를 등록합니다. -->
+
+  <context-param>
+    <param-name>contextParam1</param-name>
+    <param-value>contextValue1</param-value>
+  </context-param>
+
+  <context-param>
+    <param-name>contextParam2</param-name>
+    <param-value>contextValue2</param-value>
+  </context-param>
+
+  <!-- Listener 등록 -->
+  <listener>
+    <listener-class>org.zerock.myapp.listener.ServletContextListenerImpl</listener-class>
+  </listener>
+
+
+  <!-- JDBC 4대 정보를 서블릿 초기화 파라미터로 등록합니다. -->
+
+  <servlet>
+    <servlet-name>GetAllEmployees</servlet-name>
+    <servlet-class>org.zerock.myapp.servlet.GetAllEmployeesServlet</servlet-class>
+
+    <init-param>
+      <param-name>driver</param-name>
+      <param-value>oracle.jdbc.OracleDriver</param-value>
+    </init-param>
+    <init-param>
+      <param-name>user</param-name>
+      <param-value>HR</param-value>
+    </init-param>
+    <init-param>
+      <param-name>pass</param-name>
+      <param-value>Oracle123456789</param-value>
+    </init-param>
+    <init-param>
+      <param-name>url</param-name>
+      <param-value>jdbc:oracle:thin:@ATP20191201_HIGH?TNS_ADMIN=C:/opt/OracleCloudWallet/ATP</param-value>
+    </init-param>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>GetAllEmployees</servlet-name>
+    <url-pattern>/getAllEmployees</url-pattern>
+  </servlet-mapping>
+
+
+  <filter>
+    <filter-name>Filter1</filter-name>
+    <filter-class>org.zerock.myapp.filter.Filter1</filter-class>
+  </filter>
+
+  <filter>
+    <filter-name>Filter2</filter-name>
+    <filter-class>org.zerock.myapp.filter.Filter2</filter-class>
+  </filter>
+  <filter>
+    <filter-name>Filter3</filter-name>
+    <filter-class>org.zerock.myapp.filter.Filter3</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>Filter1</filter-name>    
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>Filter2</filter-name>    
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>Filter3</filter-name>    
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  
+  <absolute-ordering>
+    <name>Filter3</name>
+    <name>Filter2</name>
+    <name>Filter1</name>
+  </absolute-ordering>
+
+</web-app>
